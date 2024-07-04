@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "queue-api", "queue-api\queue-api.csproj", "{1CF8A793-D6EA-45E9-BA51-9B7D5A2727DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "queue-api", "queue-api\queue-api.csproj", "{1CF8A793-D6EA-45E9-BA51-9B7D5A2727DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "queue-services", "queue-services\queue-services.csproj", "{23DA15CB-2A1B-4032-867E-B6B9ED900564}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "queue-services", "queue-services\queue-services.csproj", "{23DA15CB-2A1B-4032-867E-B6B9ED900564}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

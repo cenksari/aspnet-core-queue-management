@@ -42,5 +42,4 @@ public class QueueService : IQueueService<string>
 
 		return workItem;
 	}
-
 }
