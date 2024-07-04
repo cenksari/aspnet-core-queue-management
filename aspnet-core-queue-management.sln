@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "queue-api", "queue-api\queue-api.csproj", "{1CF8A793-D6EA-45E9-BA51-9B7D5A2727DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "queue-services", "queue-services\queue-services.csproj", "{23DA15CB-2A1B-4032-867E-B6B9ED900564}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CF8A793-D6EA-45E9-BA51-9B7D5A2727DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CF8A793-D6EA-45E9-BA51-9B7D5A2727DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CF8A793-D6EA-45E9-BA51-9B7D5A2727DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CF8A793-D6EA-45E9-BA51-9B7D5A2727DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23DA15CB-2A1B-4032-867E-B6B9ED900564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23DA15CB-2A1B-4032-867E-B6B9ED900564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23DA15CB-2A1B-4032-867E-B6B9ED900564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23DA15CB-2A1B-4032-867E-B6B9ED900564}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A46622B6-3B4C-45F9-9CEB-7C2B2242474F}
+	EndGlobalSection
+EndGlobal
