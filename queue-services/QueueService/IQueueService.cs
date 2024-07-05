@@ -2,7 +2,7 @@
 
 public interface IQueueService<T>
 {
-	ValueTask AddQueue(T workItem);
+	ValueTask AddToQueueAsync(T workItem);
 
-	ValueTask<T> DeQueue(CancellationToken cancellationToken);
+	ValueTask<T> RemoveFromQueueAsync(CancellationToken cancellationToken);
 }

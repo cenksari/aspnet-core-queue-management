@@ -12,13 +12,50 @@ public class QueueHostedService
 
 	private readonly IQueueService<string> _queueService = queueService;
 
-	protected override async Task ExecuteAsync(CancellationToken cancellationToken)
+	protected override Task ExecuteAsync(CancellationToken cancellationToken)
+	{
+		_logger.LogInformation("{name} is running...", nameof(QueueHostedService));
+
+		return StartQueueAsync(cancellationToken);
+	}
+
+	private async Task StartQueueAsync(CancellationToken cancellationToken)
 	{
 		while (!cancellationToken.IsCancellationRequested)
 		{
-			var name = await _queueService.DeQueue(cancellationToken);
+			try
+			{
+				string name = await _queueService.RemoveFromQueueAsync(cancellationToken);
 
-			_logger.LogInformation("Queue management service worked for {name}", name);
+				_logger.LogInformation("Queue management service worked for {name}", name);
+
+				bool completed = await ProcessTaskAsync(name);
+
+				if (!completed)
+					_logger.LogError("Process not completed for {name}", name);
+				else
+					_logger.LogInformation("Process successfully completed for {name}", name);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "Error occurred executing task.");
+			}
 		}
+	}
+
+	private async Task<bool> ProcessTaskAsync(string name)
+	{
+		_logger.LogInformation("Process started for {name}", name);
+
+		Task.Delay(3000).Wait();
+
+		return await Task.FromResult(true);
+	}
+
+	public override async Task StopAsync(CancellationToken cancellationToken)
+	{
+		_logger.LogInformation("{name} is stopping", nameof(QueueHostedService));
+
+		await base.StopAsync(cancellationToken);
 	}
 }

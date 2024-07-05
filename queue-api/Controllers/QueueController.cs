@@ -15,9 +15,9 @@ public class QueueController(IQueueService<string> queueService) : ControllerBas
 	[HttpPost]
 	public async Task<IActionResult> Add(string[] names)
 	{
-		foreach (var name in names)
+		foreach (string name in names)
 		{
-			await _queueService.AddQueue(name);
+			await _queueService.AddToQueueAsync(name);
 		}
 
 		return Ok();

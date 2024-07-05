@@ -25,7 +25,7 @@ public class QueueService : IQueueService<string>
 	/// Add string to queue
 	/// </summary>
 	/// <param name="workItem">Item</param>
-	public async ValueTask AddQueue(string workItem)
+	public async ValueTask AddToQueueAsync(string workItem)
 	{
 		ArgumentNullException.ThrowIfNull(workItem, nameof(workItem));
 
@@ -36,9 +36,9 @@ public class QueueService : IQueueService<string>
 	/// Remove item from queue
 	/// </summary>
 	/// <param name="cancellationToken">Cancellation token</param>
-	public async ValueTask<string> DeQueue(CancellationToken cancellationToken)
+	public async ValueTask<string> RemoveFromQueueAsync(CancellationToken cancellationToken)
 	{
-		var workItem = await queue.Reader.ReadAsync(cancellationToken);
+		string workItem = await queue.Reader.ReadAsync(cancellationToken);
 
 		return workItem;
 	}
