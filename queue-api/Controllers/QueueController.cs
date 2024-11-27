@@ -13,13 +13,14 @@ public class QueueController(IQueueService<string> queueService) : ControllerBas
 	/// </summary>
 	/// <param name="names">String array</param>
 	[HttpPost]
-	public async Task<IActionResult> Add(string[] names)
+	public async Task<IActionResult> Add([FromBody] string[] names)
 	{
-		foreach (string name in names)
-		{
-			await _queueService.AddToQueueAsync(name);
-		}
+		if (names == null || names.Length == 0)
+			return BadRequest("The names array cannot be null or empty.");
 
-		return Ok();
+		foreach (var name in names)
+			await _queueService.AddToQueueAsync(name);
+
+		return Ok(new { Message = "Items added to the queue successfully." });
 	}
 }

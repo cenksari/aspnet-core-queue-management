@@ -7,18 +7,16 @@ using System.Threading.Channels;
 /// </summary>
 public class QueueService : IQueueService<string>
 {
-	private readonly Channel<string> queue;
+	private readonly Channel<string> _queue;
 
 	public QueueService()
 	{
-		int capacity = 10;
+		const int capacity = 10;
 
-		BoundedChannelOptions options = new(capacity)
+		_queue = Channel.CreateBounded<string>(new BoundedChannelOptions(capacity)
 		{
 			FullMode = BoundedChannelFullMode.Wait
-		};
-
-		queue = Channel.CreateBounded<string>(options);
+		});
 	}
 
 	/// <summary>
@@ -27,19 +25,14 @@ public class QueueService : IQueueService<string>
 	/// <param name="workItem">Item</param>
 	public async ValueTask AddToQueueAsync(string workItem)
 	{
-		ArgumentNullException.ThrowIfNull(workItem, nameof(workItem));
+		ArgumentNullException.ThrowIfNull(workItem);
 
-		await queue.Writer.WriteAsync(workItem);
+		await _queue.Writer.WriteAsync(workItem);
 	}
 
 	/// <summary>
 	/// Remove item from queue
 	/// </summary>
 	/// <param name="cancellationToken">Cancellation token</param>
-	public async ValueTask<string> RemoveFromQueueAsync(CancellationToken cancellationToken)
-	{
-		string workItem = await queue.Reader.ReadAsync(cancellationToken);
-
-		return workItem;
-	}
+	public async ValueTask<string> RemoveFromQueueAsync(CancellationToken cancellationToken) => await _queue.Reader.ReadAsync(cancellationToken);
 }

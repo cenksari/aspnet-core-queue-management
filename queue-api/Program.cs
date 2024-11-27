@@ -13,7 +13,7 @@ builder.Services.AddLogging(i =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton(typeof(IQueueService<string>), typeof(QueueService));
+builder.Services.AddSingleton<IQueueService<string>, QueueService>();
 
 builder.Services.AddHostedService<QueueHostedService>();
 
